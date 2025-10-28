@@ -1,5 +1,4 @@
-#Galera do Volei API
-
+#  Galera do Volei
 
 ## 🎯 Objetivo do Projeto
 Este projeto implementa uma API RESTful completa focada em demonstrar a aplicação correta dos princípios de **Arquitetura de Software** e **Qualidade de Código**. O desenvolvimento priorizou:
