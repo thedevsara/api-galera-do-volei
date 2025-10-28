@@ -1,49 +1,46 @@
-#  Galera do Volei
+# Projeto: Galera do Volei API 
+
+> 🚀  Aplicação de SOLID, Assíncrono (PostgreSQL) e Segurança.
 
 ## 🎯 Objetivo do Projeto
-Este projeto implementa uma API RESTful, focada em demonstrar a aplicação correta dos princípios de **Arquitetura de Software** e **Qualidade de Código**. O desenvolvimento priorizou:
+Esta API foi construída seguindo o padrão de **Arquitetura de Camadas** para demonstrar o conhecimento em **Qualidade de Código**. O foco principal foi ir além do CRUD, criando um projeto que:
 
-1.  **Separação de Responsabilidades (Camadas).**
-2.  **Transações Avançadas** que modelam a lógica de negócio (além do CRUD).
-3.  **Preparação para o Ambiente de Produção** (PostgreSQL, Assíncrono e Middleware de Segurança).
+1.  **Aplica o SOLID:** Principalmente Inversão de Dependência (D) e Responsabilidade Única (S).
+2.  **Lida com Assincronicidade:** Toda a API foi adaptada para o uso assíncrono do PostgreSQL.
+3.  **Implementa Transações:** Modelagem de regras de negócio complexas (candidatura, aceite, avaliação).
+
+---
 
 ## ✨ Arquitetura e Padrões Aplicados
 
-O projeto adota uma **Arquitetura de Camadas** estrita, aplicando os seguintes conceitos:
-
-| Conceito | Aplicação no Projeto | Princípio SOLID |
+| Conceito | Chave de Implementação | Princípio SOLID |
 | :--- | :--- | :--- |
-| **Persistência Real** | Migração total dos Repositórios para o **PostgreSQL** (`node-postgres`). | |
-| **Inversão de Dependência**| Os **Services** dependem de **Interfaces** (`IJogadorRepository`), e não de classes concretas. | **D (Dependency Inversion Principle):** Facilita a troca do banco de dados sem alterar a lógica. |
-| **Lógica de Negócio** | Os **Services** (ex: `JogadorService`) são responsáveis por cálculos (média) e validações. | **S (Single Responsibility Principle):** A lógica de negócio é isolada. |
-| **Controle de Acesso** | Implementação de um **Middleware de Autorização** na rota de `PATCH`. | Segurança e **S** de SOLID. |
-| **Tratamento de Erros** | Uso de **Exceções Personalizadas** capturadas globalmente. | Retorna códigos HTTP semanticamente corretos (`404`, `400`). |
+| **Inversão de Dependência**| Os **Services** dependem de **Interfaces** (`IJogadorRepository`), e não da classe concreta de acesso ao banco. | **D (Dependency Inversion Principle):** Facilita a troca do banco de dados (Ex: para MongoDB). |
+| **Persistência Assíncrona** | Repositórios (`JogadorPostgreRepository`) contêm o SQL e usam `async/await` e `pool.query()`. | |
+| **Controle de Acesso** | **Middleware de Autorização** verifica o `Bearer Token` (`Authorization`). | **S (Single Responsibility Principle):** A segurança é separada da lógica de negócio. |
+| **Tratamento de Erros** | Uso de **Exceções Personalizadas** (`404 NotFoundException`) capturadas globalmente. | Retorna códigos HTTP semanticamente corretos. |
 
 ---
 
-## 💻 Endpoints Chave (Transações Avançadas)
+## 💻 Endpoints Chave (Transações e Lógica)
 
-Estes endpoints demonstram a arquitetura de serviços e a lógica de negócio do projeto:
+Estes endpoints são a prova do design da sua API:
 
-| Método | Endpoint | Descrição da Transação | Requisito Especial |
+| Método | Endpoint | Descrição da Ação | Requisito Especial |
 | :--- | :--- | :--- | :--- |
-| **POST** | `/api/partidas/:id/candidatura` | **Cria** uma nova solicitação. Lança erro `400 Bad Request` se o jogador já estiver candidatado. | Valida duplicidade na camada Service. |
-| **PATCH**| `/api/solicitacoes/:id` | **Atualiza** o status de uma solicitação (Aceitar/Recusar). | **Autorização:** Requer `Authorization: Bearer 99`. |
-| **POST**| `/api/avaliacoes` | **Registra** uma nova nota para um jogador/partida. | O Service valida se a nota está entre 0 e 10. |
-| **GET** | `/api/jogadores/:id` | **Consulta** o perfil completo do jogador. | **Lógica de Dados:** O Service calcula a `notaMedia` em tempo real. |
+| **POST** | `/api/partidas/:id/candidatura` | **Cria** uma nova solicitação. Verifica se o jogador já se candidatou (Regra de Negócio). | Lógica de Validação no **Service**. |
+| **PATCH**| `/api/solicitacoes/:id` | **Atualiza** o status de uma solicitação (Aceitar/Recusar). | **Protegida por Middleware:** Requer `Authorization: Bearer 99`. |
+| **GET** | `/api/jogadores/:id` | **Cálculo Avançado:** Retorna o perfil, chamando a lógica para calcular a `notaMedia` de forma assíncrona. | Combina dados de dois Repositórios. |
 
 ---
 
-## 🛠️ Configuração e Execução
+## 🛠️ Guia de Inicialização (Console Interativo)
 
-### **1. Pré-requisitos**
+Siga os passos no terminal para rodar o projeto.
 
-1.  Node.js e NPM instalados.
-2.  Servidor **PostgreSQL** rodando.
+### **1. Configuração do Banco de Dados**
 
-### **2. Configuração do Banco de Dados**
-
-Na raiz do projeto, crie o arquivo **`.env`** com suas credenciais:
+Crie o arquivo `.env` na raiz do projeto e preencha suas credenciais:
 
 ```env
 PGUSER=postgres
