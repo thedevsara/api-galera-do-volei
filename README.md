@@ -1,4 +1,4 @@
-# Projeto: Galera do Volei API
+#Galera do Volei API
 
 
 ## 🎯 Objetivo do Projeto
