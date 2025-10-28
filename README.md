@@ -1,7 +1,7 @@
 #  Galera do Volei
 
 ## 🎯 Objetivo do Projeto
-Este projeto implementa uma API RESTful completa focada em demonstrar a aplicação correta dos princípios de **Arquitetura de Software** e **Qualidade de Código**. O desenvolvimento priorizou:
+Este projeto implementa uma API RESTful, focada em demonstrar a aplicação correta dos princípios de **Arquitetura de Software** e **Qualidade de Código**. O desenvolvimento priorizou:
 
 1.  **Separação de Responsabilidades (Camadas).**
 2.  **Transações Avançadas** que modelam a lógica de negócio (além do CRUD).
