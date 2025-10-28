@@ -1,4 +1,5 @@
-# Projeto: Galera do Volei API (Arquitetura de Software Profissional)
+# Projeto: Galera do Volei API
+
 
 ## 🎯 Objetivo do Projeto
 Este projeto implementa uma API RESTful completa focada em demonstrar a aplicação correta dos princípios de **Arquitetura de Software** e **Qualidade de Código**. O desenvolvimento priorizou:
