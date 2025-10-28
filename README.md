@@ -24,7 +24,6 @@ Esta API foi construída seguindo o padrão de **Arquitetura de Camadas** para d
 
 ## 💻 Endpoints Chave (Transações e Lógica)
 
-Estes endpoints são a prova do design da sua API:
 
 | Método | Endpoint | Descrição da Ação | Requisito Especial |
 | :--- | :--- | :--- | :--- |
