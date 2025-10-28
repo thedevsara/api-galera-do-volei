@@ -33,7 +33,7 @@ Esta API foi construída seguindo o padrão de **Arquitetura de Camadas** para d
 
 ---
 
-## 🛠️ Guia de Inicialização (Console Interativo)
+## 🛠️ Guia de Inicialização 
 
 Siga os passos no terminal para rodar o projeto.
 
